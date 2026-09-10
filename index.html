@@ -100,7 +100,7 @@
 	</header>
 	<main>
 		<section class="hero">
-			<div class="hero-copy"><div class="eyebrow">Matériel médical · sélection 2024</div><h1>Prendre soin,<br><em>autrement.</em></h1><p>Des équipements fiables, choisis pour accompagner chaque parcours de santé avec plus de confort et d'autonomie.</p><a href="#catalogue" class="primary">Découvrir la sélection <span>↘</span></a></div>
+			<div class="hero-copy"><div class="eyebrow">Matériel médical · sélection 2024</div><h1>Matériels   médicaux accessibles<br><em>à tous.</em></h1><p>Des équipements fiables, choisis pour accompagner chaque parcours de santé avec plus de confort et d'autonomie.</p><a href="#catalogue" class="primary">Découvrir la sélection <span>↘</span></a></div>
 			<figure class="hero-visual"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/A_modern_medical_ultrasound_scanner.jpg" alt="Échographe médical professionnel"><figcaption>Équipement choisi par nos experts</figcaption></figure>
 			<div class="hero-stat"><strong>+2 500</strong>professionnels nous font confiance</div>
 		</section>
@@ -115,27 +115,28 @@
 	<div class="overlay" id="overlay"></div><aside class="cart" id="cart"><div class="cart-head"><h2>Votre panier</h2><button class="close" id="cart-close">×</button></div><div class="cart-items" id="cart-items"><div class="empty">Votre panier est encore vide.<br>Ajoutez un équipement pour commencer.</div></div><div class="cart-foot"><div class="total"><span>Total</span><span id="total">0,00 €</span></div><button class="primary checkout">Passer la commande <span>→</span></button></div></aside>
 	<div class="model-modal" id="model-modal" role="dialog" aria-modal="true" aria-labelledby="model-title"><div class="model-panel"><div class="model-head"><div><h2 id="model-title"></h2><p id="model-subtitle"></p></div><button class="model-close" id="model-close" aria-label="Fermer">×</button></div><div class="model-list" id="model-list"></div></div></div>
 	<script>
-		const image = 'https://upload.wikimedia.org/wikipedia/commons/e/e4/A_modern_medical_ultrasound_scanner.jpg';
+		const localImage = file => encodeURI(`./${file}`);
+		const image = localImage('Echograhe.jfif');
 		const images = {
-			otoscope:'https://upload.wikimedia.org/wikipedia/commons/5/5d/Otoscope_Spengler_SMARTLED_5500.png',
-			doppler:'https://upload.wikimedia.org/wikipedia/commons/2/28/Doppler_ultrasound_analyzer_of_blood_velocity.jpg',
-			ecg:'https://upload.wikimedia.org/wikipedia/commons/b/b7/U.S._Army_Cpl._Amanda_Palko%2C_veterinary_technician_with_the_993rd_Medical_Detachment%2C_U.S._Army_Reserve%2C_attaches_a_Maltese_mix_dog_to_an_electrocardiogram_machine_before_neutering_surgery_April_18%2C_2012_120418-F-ZH346-011.jpg',
-			spirometer:'https://upload.wikimedia.org/wikipedia/commons/d/d7/Spirometer_im_DOMiD%2C_K%C3%B6ln-2076.jpg',
-			monitor:'https://upload.wikimedia.org/wikipedia/commons/f/f0/Biomedical_Technicians_Test_Hospital_EquipmentBiomedical_Technicians_Test_Hospital_Equipment_%288587807%29.jpg',
-			dermatoscope:'https://upload.wikimedia.org/wikipedia/commons/e/e6/Dermatoscope1.JPG',
-			portableUltrasound:'https://upload.wikimedia.org/wikipedia/commons/5/50/Contracting_officer_saves_%24161%2C000_on_ultrasound_systems_DVIDS377890.jpg',
-			oximeter:'https://upload.wikimedia.org/wikipedia/commons/d/dd/Pulse_Oximeter_Blue_Colour.jpg',
-			pressure:'https://upload.wikimedia.org/wikipedia/commons/4/41/2020_Sfigmomanometr_elektroniczny.jpg',
-			thermometer:'https://upload.wikimedia.org/wikipedia/commons/6/65/2023_Rt%C4%99ciowy_termometr_lekarski.jpg',
-			stethoscope:'https://upload.wikimedia.org/wikipedia/commons/8/8c/Stethoscope-2.jpg',
-			nebulizer:'https://upload.wikimedia.org/wikipedia/commons/5/5d/Nebulizer.jpg',
-			glucose:'https://upload.wikimedia.org/wikipedia/commons/7/7e/Glucose_meter.jpg',
-			consumables:'https://upload.wikimedia.org/wikipedia/commons/6/6f/Medical_gloves.jpg',
-			ultrasound:'https://upload.wikimedia.org/wikipedia/commons/e/e4/A_modern_medical_ultrasound_scanner.jpg',
-			ventilator:'https://upload.wikimedia.org/wikipedia/commons/5/56/Ventilator_BW_2026-06-19_16-42-30_running.jpg',
-			xray:'https://upload.wikimedia.org/wikipedia/commons/0/01/Mobile_X-ray_unit%2C_Cosne.jpg',
-			ct:'https://upload.wikimedia.org/wikipedia/commons/3/3e/64-slice_CT_scanner_at_the_Warwickshire_Nuffield_Hospital%2C_Blackdown_-_geograph.org.uk_-_1540404.jpg',
-			autoclave:'https://upload.wikimedia.org/wikipedia/commons/d/df/Lille_Mus%C3%A9e_de_l%27Institut_Louis_Pasteur_autoclave.jpg',
+			otoscope:localImage('ottosco.jfif'),
+			doppler:localImage('DOPPLER.jfif'),
+			ecg:localImage('ecg ortable.jfif'),
+			spirometer:localImage('spiro.png'),
+			monitor:localImage('moniteur patient.jfif'),
+			dermatoscope:localImage('dermatoscope.jfif'),
+			portableUltrasound:localImage('echo portable.jfif'),
+			oximeter:localImage('oxy.jfif'),
+			pressure:localImage('tensio.jfif'),
+			thermometer:localImage('ther.jfif'),
+			stethoscope:localImage('sthétoscope.jfif'),
+			nebulizer:localImage('nebuliseur.jfif'),
+			glucose:localImage('gluco.jfif'),
+			consumables:localImage('consommables.jpg'),
+			ultrasound:localImage('echo pro.jfif'),
+			ventilator:localImage('Ventilateur Respiratoire Artificiel.jfif'),
+			xray:localImage('X-RAY.jfif'),
+			ct:localImage('scanner.jfif'),
+			autoclave:localImage('autoclave.jfif'),
 			mri:'https://upload.wikimedia.org/wikipedia/commons/e/ee/MRI-Philips.JPG'
 		};
 		const makeProduct = (name, type, category, models, productImage = image, tag = 'Voir les modèles') => ({ name, type, category, models, image:productImage, tag });
@@ -154,7 +155,7 @@
 			makeProduct('Stéthoscope', 'Auscultation', 'diagnostic', [['3M Littmann','Classic III',170,true],['3M Littmann','Cardiology IV',170],['Riester','Duplex 2.0',100],['ERKA','Precise',85]], images.stethoscope, 'Meilleur choix'),
 			makeProduct('Nébuliseur', 'Aérosolthérapie', 'soins', [['OMRON','CompAir C28P',50,true],['OMRON','C801',20],['Microlife','NEB 200',45],['Beurer','IH26',65]], images.nebulizer, 'Meilleur choix'),
 			makeProduct('Glucomètre', 'Mesure de la glycémie', 'diagnostic', [['Roche','Accu-Chek Guide',50,true],['Abbott','FreeStyle Optium Neo',20],['Ascensia','Contour Next One',50],['Beurer','GL44',38]], images.glucose, 'Meilleur choix'),
-			makeProduct('Consommables médicaux', 'Gants, masques et dispositifs', 'soins', [['Hartmann','Gants nitrile · boîte',15,true],['Hartmann','Masques chirurgicaux · boîte',10,true],['BD',' seringues · boîte',20,true],['BD','Aiguilles · boîte',20,true],['Hartmann / Lohmann & Rauscher','Compresses stériles',15],['Hartmann / 3M / BSN','Pansements',20],['B. Braun / Schülke','Désinfectants',30],['BD / Greiner / Sarstedt','Tubes de prélèvement',30],['Roche / Abbott / BD','Lancettes',20],['Roche / Abbott / Ascensia','Bandelettes glucose',30]], images.consumables, 'Hartmann + BD'),
+			makeProduct('Consommables médicaux', 'Gants, masques et dispositifs', 'soins', [['Hartmann','Gants nitrile · boîte',15,true],['Hartmann','Masques chirurgicaux · boîte',10,true],['BD',' seringues · boîte',20,true],['BD','Aiguilles · boîte',20,true],['Hartmann / Lohmann & Rauscher','Compresses stériles',15,true],['Hartmann / 3M / BSN','Pansements',20,true],['B. Braun / Schülke','Désinfectants',30,true],['BD / Greiner / Sarstedt','Tubes de prélèvement',30,true],['Roche / Abbott / BD','Lancettes',20,true],['Roche / Abbott / Ascensia','Bandelettes glucose',30,true]], images.consumables, 'Hartmann + BD'),
 			makeProduct('Échographie', 'Équipement hospitalier', 'imagerie', [['GE HealthCare','LOGIQ P9',16000,true],['Philips','Affiniti 50',15000],['Siemens','ACUSON Juniper',25000],['Mindray','DC-8',15000]], image, 'Meilleur choix'),
 			makeProduct('Ventilateur / respirateur artificiel', 'Réanimation', 'imagerie', [['Hamilton Medical','HAMILTON-C1',7455,true],['Dräger','Savina 300',7000],['Mindray','SV300',6000],['Getinge','SERVO-i',4000]], images.ventilator, 'Meilleur choix'),
 			makeProduct('Radiologie X-ray', 'Radiologie numérique', 'imagerie', [['Siemens Healthineers','MULTIX Select DR',25590,true],['Philips','MobileDiagnost wDR',20000],['GE HealthCare','AMX Navigate',40000],['AGFA','DX-D',6000]], images.xray, 'Meilleur choix'),
