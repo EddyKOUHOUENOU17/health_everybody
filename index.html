@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Healtheverybody — Matériel médical expert</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	<style>
+		:root { --ink:#173a35; --muted:#6f827d; --paper:#f7f6f1; --mint:#dcece3; --green:#176451; --coral:#e47d61; --line:#dfe6e0; --white:#fffefa; }
+		* { box-sizing:border-box; }
+		body { margin:0; background:var(--paper); color:var(--ink); font-family:Manrope, sans-serif; }
+		button, input { font:inherit; }
+		button { cursor:pointer; border:0; }
+		.topbar { background:var(--ink); color:#e2efe9; display:flex; justify-content:center; padding:10px 24px; font-size:11px; letter-spacing:.08em; text-transform:uppercase; }
+		.topbar span { color:#f5b49a; margin-right:8px; }
+		header { max-width:1240px; margin:auto; padding:28px 28px 20px; display:flex; align-items:center; gap:36px; }
+		.brand { display:flex; align-items:center; gap:12px; color:var(--ink); text-decoration:none; font-weight:800; font-size:17px; letter-spacing:-.04em; white-space:nowrap; }
+		.brand-mark { background:var(--green); color:#fff; width:30px; height:30px; border-radius:10px; display:grid; place-items:center; font-size:19px; }
+		.fr-flag { width:36px; height:25px; display:flex; overflow:hidden; border-radius:3px; box-shadow:0 2px 5px rgba(23,58,53,.2); flex-shrink:0; }
+		.fr-flag span { flex:1; } .fr-blue { background:#1d3f91; } .fr-white { background:#fff; } .fr-red { background:#ed2939; }
+		nav { display:flex; gap:27px; font-size:13px; flex:1; }
+		nav a { color:var(--muted); text-decoration:none; } nav a:first-child { color:var(--ink); font-weight:800; }
+		.head-actions { display:flex; align-items:center; gap:18px; }
+		.search { border-bottom:1px solid #aabbb4; display:flex; align-items:center; gap:8px; padding:7px 0; width:190px; }
+		.search input { background:transparent; border:0; outline:0; width:100%; color:var(--ink); font-size:12px; }
+		.icon-btn { position:relative; background:none; color:var(--ink); font-size:20px; padding:4px; }
+		.count { position:absolute; top:-4px; right:-6px; width:16px; height:16px; border-radius:50%; background:var(--coral); color:#fff; font-size:9px; display:grid; place-items:center; }
+		.hero { max-width:1184px; margin:12px auto 0; background:var(--mint); min-height:365px; padding:58px 66px; position:relative; overflow:hidden; display:flex; align-items:center; }
+		.hero:after { content:""; position:absolute; width:470px; height:470px; border:1px solid rgba(23,100,81,.16); border-radius:50%; right:24px; top:-140px; box-shadow:0 0 0 42px rgba(255,254,250,.26), 0 0 0 88px rgba(255,254,250,.18); }
+		.hero-copy { position:relative; z-index:1; max-width:540px; }
+		.eyebrow { font-family:"DM Mono", monospace; font-size:11px; color:var(--green); text-transform:uppercase; letter-spacing:.13em; margin-bottom:18px; }
+		h1 { font-size:clamp(37px,5vw,66px); line-height:1.02; letter-spacing:-.075em; margin:0 0 22px; max-width:580px; }
+		.hero-copy p { color:#4d6b63; font-size:15px; line-height:1.7; max-width:420px; margin:0 0 28px; }
+		.primary { background:var(--green); color:white; padding:14px 20px; font-weight:700; font-size:12px; display:inline-flex; align-items:center; gap:23px; }
+		.primary:hover { background:var(--ink); }
+		.hero-visual { position:absolute; z-index:1; right:58px; top:38px; width:355px; height:218px; overflow:hidden; border:9px solid rgba(255,254,250,.72); box-shadow:0 18px 30px rgba(23,58,53,.13); transform:rotate(2deg); }
+		.hero-visual img { width:100%; height:100%; object-fit:contain; display:block; background:#edf3ee; }
+		.hero-visual figcaption { position:absolute; bottom:0; left:0; right:0; padding:9px 12px; background:rgba(23,58,53,.8); color:#fff; font:10px "DM Mono",monospace; text-transform:uppercase; letter-spacing:.06em; }
+		.hero-stat { position:absolute; z-index:2; right:95px; bottom:39px; color:var(--green); font-family:"DM Mono",monospace; font-size:11px; line-height:1.6; }
+		.hero-stat strong { font:700 42px Manrope; letter-spacing:-.08em; display:block; }
+		.section { max-width:1184px; margin:0 auto; padding:58px 0 90px; }
+		.section-head { display:flex; align-items:end; justify-content:space-between; padding:0 0 24px; border-bottom:1px solid var(--line); }
+		.section-head h2 { margin:0; font-size:25px; letter-spacing:-.05em; } .section-head p { margin:5px 0 0; color:var(--muted); font-size:12px; }
+		.category-row { display:flex; gap:9px; margin:23px 0 31px; overflow:auto; padding-bottom:4px; }
+		.category { background:transparent; color:var(--muted); border:1px solid var(--line); padding:10px 15px; font-size:11px; white-space:nowrap; }
+		.category.active, .category:hover { background:var(--green); border-color:var(--green); color:white; }
+		.product-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:17px; }
+		.product { background:var(--white); min-width:0; position:relative; transition:transform .2s, box-shadow .2s; }
+		.product:hover { transform:translateY(-4px); box-shadow:0 12px 28px rgba(23,58,53,.08); }
+		.product-visual { height:225px; overflow:hidden; background:#edf3ee; position:relative; }
+		.product-visual img { width:100%; height:100%; object-fit:contain; display:block; mix-blend-mode:multiply; padding:10px; }
+		.tag { position:absolute; left:13px; top:13px; background:var(--coral); color:#fff; padding:5px 8px; font:10px "DM Mono",monospace; text-transform:uppercase; }
+		.wish { position:absolute; right:13px; top:10px; background:rgba(255,254,250,.85); width:28px; height:28px; border-radius:50%; color:var(--green); }
+		.product-info { padding:17px 16px 18px; }
+		.product-type { color:var(--muted); font:10px "DM Mono",monospace; text-transform:uppercase; letter-spacing:.05em; }
+		.product h3 { font-size:14px; margin:8px 0 14px; letter-spacing:-.03em; line-height:1.35; min-height:38px; }
+		.price-line { display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--line); padding-top:13px; }
+		.price { font-size:16px; font-weight:800; } .price small { font-size:10px; font-weight:500; color:var(--muted); }
+		.add { background:var(--ink); color:white; width:31px; height:31px; border-radius:50%; font-size:19px; line-height:1; }
+		.add:hover { background:var(--coral); }
+		.benefits { background:var(--ink); color:white; display:grid; grid-template-columns:repeat(3,1fr); max-width:1184px; margin:0 auto 55px; padding:26px 38px; gap:30px; }
+		.benefit { display:flex; gap:14px; align-items:center; } .benefit b { display:block; font-size:12px; margin-bottom:4px; } .benefit span { color:#a9c3ba; font-size:10px; }
+		.benefit-icon { color:#f5b49a; font-size:23px; }
+		footer { border-top:1px solid var(--line); padding:30px max(28px, calc((100% - 1184px)/2)); display:flex; justify-content:space-between; color:var(--muted); font-size:11px; }
+		.overlay { display:none; position:fixed; inset:0; background:rgba(23,58,53,.3); z-index:5; } .overlay.open { display:block; }
+		.cart { position:fixed; z-index:6; right:0; top:0; height:100vh; width:min(390px,100%); background:var(--white); transform:translateX(100%); transition:transform .3s; padding:28px; display:flex; flex-direction:column; }
+		.cart.open { transform:translateX(0); } .cart-head { display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--line); padding-bottom:20px; }
+		.cart h2 { font-size:20px; margin:0; } .close { background:none; color:var(--ink); font-size:23px; }
+		.cart-items { flex:1; padding:22px 0; overflow:auto; } .empty { color:var(--muted); font-size:13px; text-align:center; margin-top:80px; }
+		.cart-item { display:flex; gap:12px; border-bottom:1px solid var(--line); padding:12px 0; } .cart-item img { width:65px; height:65px; object-fit:contain; padding:4px; background:#edf3ee; } .cart-item-info { flex:1; min-width:0; } .cart-item b { font-size:12px; display:block; margin-bottom:8px; } .cart-item-price { font-size:12px; color:var(--green); font-weight:700; display:block; margin-bottom:9px; } .quantity { display:flex; align-items:center; gap:10px; } .quantity button { width:24px; height:24px; border:1px solid var(--line); border-radius:50%; background:var(--paper); color:var(--ink); font-size:16px; line-height:1; padding:0; } .quantity button:hover { background:var(--green); border-color:var(--green); color:white; } .quantity strong { min-width:14px; text-align:center; font-size:12px; }
+		.cart-foot { border-top:1px solid var(--line); padding-top:18px; } .total { display:flex; justify-content:space-between; font-weight:800; margin-bottom:17px; }
+		.checkout { width:100%; justify-content:space-between; }
+		.product { cursor:pointer; }
+		.model-modal { position:fixed; inset:0; z-index:8; display:none; place-items:center; padding:20px; background:rgba(23,58,53,.42); }
+		.model-modal.open { display:grid; }
+		.model-panel { width:min(720px,100%); max-height:min(720px,90vh); overflow:auto; background:var(--white); padding:28px; box-shadow:0 20px 60px rgba(23,58,53,.2); }
+		.model-head { display:flex; justify-content:space-between; gap:20px; align-items:start; border-bottom:1px solid var(--line); padding-bottom:18px; margin-bottom:8px; }
+		.model-head h2 { margin:0; font-size:25px; letter-spacing:-.05em; } .model-head p { color:var(--muted); font-size:11px; margin:6px 0 0; }
+		.model-close { background:none; color:var(--ink); font-size:26px; line-height:1; }
+		.model-list { display:grid; gap:2px; }
+		.model-row { display:grid; grid-template-columns:1fr auto auto; align-items:center; gap:16px; padding:15px 0; border-bottom:1px solid var(--line); }
+		.model-row b { font-size:13px; } .model-row small { display:block; color:var(--muted); font-size:10px; margin-top:4px; }
+		.model-price { font-weight:800; white-space:nowrap; } .model-price del { color:var(--muted); font-weight:500; }
+		.model-row.selected { background:var(--mint); margin:0 -12px; padding-left:12px; padding-right:12px; }
+		.model-badge { color:var(--green); font:10px "DM Mono",monospace; text-transform:uppercase; white-space:nowrap; }
+		.model-add { background:var(--ink); color:#fff; width:30px; height:30px; border-radius:50%; font-size:18px; }
+		@media (max-width:520px) { .model-panel { padding:20px; } .model-row { grid-template-columns:1fr auto; gap:9px; } .model-badge { grid-column:1; grid-row:2; } .model-add { grid-column:2; grid-row:1 / span 2; } }
+		@media (max-width:800px) { header { padding:20px; flex-wrap:wrap; gap:20px; } nav { order:3; width:100%; overflow:auto; gap:20px; } .search { width:145px; } .hero { margin:0; padding:44px 24px 120px; display:block; } .hero-visual { position:relative; top:auto; right:auto; width:100%; height:190px; margin:28px 0 0; transform:rotate(1deg); } .hero-stat { left:24px; right:auto; bottom:25px; } .section { padding:44px 20px 65px; } .product-grid { grid-template-columns:repeat(2,1fr); gap:12px; } .product-visual { height:170px; } .benefits { margin:0 20px 35px; grid-template-columns:1fr; padding:24px; gap:18px; } footer { padding:24px 20px; gap:15px; flex-direction:column; } }
+		@media (max-width:430px) { .brand { font-size:15px; } .head-actions { margin-left:auto; } .search { width:125px; } .product-visual { height:145px; } .product-info { padding:13px 11px; } .product h3 { font-size:12px; } }
+	</style>
+</head>
+<body>
+	<div class="topbar"><span>Première livraison gratuite</span> à partir de 150 € d'achat · Expédition sous 24 h en France métropolitaine</div>
+	<header>
+		<a class="brand" href="#"><span class="brand-mark">+</span> healtheverybody <span class="fr-flag" role="img" aria-label="Drapeau de la République française"><span class="fr-blue"></span><span class="fr-white"></span><span class="fr-red"></span></span></a>
+		<nav><a href="#catalogue">Catalogue</a><a href="#catalogue">Diagnostic</a><a href="#catalogue">Mobilité</a><a href="#catalogue">Soins à domicile</a></nav>
+		<div class="head-actions"><label class="search">⌕<input id="search" type="search" placeholder="Rechercher"></label><button class="icon-btn" id="cart-open" aria-label="Ouvrir le panier">♧<i class="count">0</i></button></div>
+	</header>
+	<main>
+		<section class="hero">
+			<div class="hero-copy"><div class="eyebrow">Matériel médical · sélection 2024</div><h1>Prendre soin,<br><em>autrement.</em></h1><p>Des équipements fiables, choisis pour accompagner chaque parcours de santé avec plus de confort et d'autonomie.</p><a href="#catalogue" class="primary">Découvrir la sélection <span>↘</span></a></div>
+			<figure class="hero-visual"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/A_modern_medical_ultrasound_scanner.jpg" alt="Échographe médical professionnel"><figcaption>Équipement choisi par nos experts</figcaption></figure>
+			<div class="hero-stat"><strong>+2 500</strong>professionnels nous font confiance</div>
+		</section>
+		<section class="section" id="catalogue">
+			<div class="section-head"><div><div class="eyebrow">Sélection experte</div><h2>Les essentiels du moment</h2><p>Prix indicatifs TTC en Europe, à confirmer selon le fournisseur.</p></div><span class="product-type" id="product-count">21 produits</span></div>
+			<div class="category-row"><button class="category active" data-filter="all">Tout voir</button><button class="category" data-filter="diagnostic">Diagnostic</button><button class="category" data-filter="soins">Soins & consommables</button><button class="category" data-filter="imagerie">Imagerie & hôpital</button></div>
+			<div class="product-grid" id="product-grid"></div>
+		</section>
+		<div class="benefits"><div class="benefit"><div class="benefit-icon">◌</div><div><b>Conseil personnalisé</b><span>Une équipe experte à votre écoute</span></div></div><div class="benefit"><div class="benefit-icon">⌁</div><div><b>Retours sous 30 jours</b><span>Simple et sans question</span></div></div><div class="benefit"><div class="benefit-icon">✓</div><div><b>Paiement sécurisé</b><span>Vos données protégées</span></div></div></div>
+	</main>
+	<footer><span>© 2024 healtheverybody</span><span>Une santé plus simple, pour tous.</span></footer>
+	<div class="overlay" id="overlay"></div><aside class="cart" id="cart"><div class="cart-head"><h2>Votre panier</h2><button class="close" id="cart-close">×</button></div><div class="cart-items" id="cart-items"><div class="empty">Votre panier est encore vide.<br>Ajoutez un équipement pour commencer.</div></div><div class="cart-foot"><div class="total"><span>Total</span><span id="total">0,00 €</span></div><button class="primary checkout">Passer la commande <span>→</span></button></div></aside>
+	<div class="model-modal" id="model-modal" role="dialog" aria-modal="true" aria-labelledby="model-title"><div class="model-panel"><div class="model-head"><div><h2 id="model-title"></h2><p id="model-subtitle"></p></div><button class="model-close" id="model-close" aria-label="Fermer">×</button></div><div class="model-list" id="model-list"></div></div></div>
+	<script>
+		const image = 'https://upload.wikimedia.org/wikipedia/commons/e/e4/A_modern_medical_ultrasound_scanner.jpg';
+		const images = {
+			otoscope:'https://upload.wikimedia.org/wikipedia/commons/5/5d/Otoscope_Spengler_SMARTLED_5500.png',
+			doppler:'https://upload.wikimedia.org/wikipedia/commons/2/28/Doppler_ultrasound_analyzer_of_blood_velocity.jpg',
+			ecg:'https://upload.wikimedia.org/wikipedia/commons/b/b7/U.S._Army_Cpl._Amanda_Palko%2C_veterinary_technician_with_the_993rd_Medical_Detachment%2C_U.S._Army_Reserve%2C_attaches_a_Maltese_mix_dog_to_an_electrocardiogram_machine_before_neutering_surgery_April_18%2C_2012_120418-F-ZH346-011.jpg',
+			spirometer:'https://upload.wikimedia.org/wikipedia/commons/d/d7/Spirometer_im_DOMiD%2C_K%C3%B6ln-2076.jpg',
+			monitor:'https://upload.wikimedia.org/wikipedia/commons/f/f0/Biomedical_Technicians_Test_Hospital_EquipmentBiomedical_Technicians_Test_Hospital_Equipment_%288587807%29.jpg',
+			dermatoscope:'https://upload.wikimedia.org/wikipedia/commons/e/e6/Dermatoscope1.JPG',
+			portableUltrasound:'https://upload.wikimedia.org/wikipedia/commons/5/50/Contracting_officer_saves_%24161%2C000_on_ultrasound_systems_DVIDS377890.jpg',
+			oximeter:'https://upload.wikimedia.org/wikipedia/commons/d/dd/Pulse_Oximeter_Blue_Colour.jpg',
+			pressure:'https://upload.wikimedia.org/wikipedia/commons/4/41/2020_Sfigmomanometr_elektroniczny.jpg',
+			thermometer:'https://upload.wikimedia.org/wikipedia/commons/6/65/2023_Rt%C4%99ciowy_termometr_lekarski.jpg',
+			stethoscope:'https://upload.wikimedia.org/wikipedia/commons/8/8c/Stethoscope-2.jpg',
+			nebulizer:'https://upload.wikimedia.org/wikipedia/commons/5/5d/Nebulizer.jpg',
+			glucose:'https://upload.wikimedia.org/wikipedia/commons/7/7e/Glucose_meter.jpg',
+			consumables:'https://upload.wikimedia.org/wikipedia/commons/6/6f/Medical_gloves.jpg',
+			ultrasound:'https://upload.wikimedia.org/wikipedia/commons/e/e4/A_modern_medical_ultrasound_scanner.jpg',
+			ventilator:'https://upload.wikimedia.org/wikipedia/commons/5/56/Ventilator_BW_2026-06-19_16-42-30_running.jpg',
+			xray:'https://upload.wikimedia.org/wikipedia/commons/0/01/Mobile_X-ray_unit%2C_Cosne.jpg',
+			ct:'https://upload.wikimedia.org/wikipedia/commons/3/3e/64-slice_CT_scanner_at_the_Warwickshire_Nuffield_Hospital%2C_Blackdown_-_geograph.org.uk_-_1540404.jpg',
+			autoclave:'https://upload.wikimedia.org/wikipedia/commons/d/df/Lille_Mus%C3%A9e_de_l%27Institut_Louis_Pasteur_autoclave.jpg',
+			mri:'https://upload.wikimedia.org/wikipedia/commons/e/ee/MRI-Philips.JPG'
+		};
+		const makeProduct = (name, type, category, models, productImage = image, tag = 'Voir les modèles') => ({ name, type, category, models, image:productImage, tag });
+		const products = [
+			makeProduct('Otoscope', 'Diagnostic ORL', 'diagnostic', [['HEINE','BETA 400 LED',648,true],['HEINE','mini3000',150],['Welch Allyn','MacroView',459],['Riester','e-scope / ri-mini',100],['KaWe','PICCOLIGHT / PICCOLIGHT C',50]], images.otoscope, 'Meilleur choix'),
+			makeProduct('Doppler', 'Diagnostic vasculaire et fœtal', 'diagnostic', [['Huntleigh','Dopplex / Doppler vasculaire',300,true],['EDAN','Doppler fœtal',100],['Hadeco','Doppler vasculaire',200],['GIMA','Dopplers',125]], images.doppler, 'Meilleur choix'),
+			makeProduct('ECG portable', 'Cardiologie', 'diagnostic', [['Schiller','CARDIOVIT',755],['Welch Allyn / Mortara','ELI 230',359],['Mindray','BeneHeart R3/R12',700],['EDAN','SE-1200',1000,true]], images.ecg, 'Sélection qualité/prix'),
+			makeProduct('Spiromètre', 'Exploration respiratoire', 'diagnostic', [['MIR','Spirobank / Minispir',220,true],['Vitalograph','ALPHA / COPD-6',59],['Schiller','Spirovit',1850],['ndd','EasyOne',1500]], images.spirometer, 'Meilleur choix'),
+			makeProduct('Moniteur patient', 'Surveillance multiparamétrique', 'diagnostic', [['Mindray','BeneView / BeneVision',450,true],['Philips','IntelliVue',300],['GE HealthCare','CARESCAPE',200],['Dräger','Vista / Infinity',158]], images.monitor, 'Meilleur choix'),
+			makeProduct('Dermatoscope', 'Examen dermatologique', 'diagnostic', [['HEINE','DELTA 30 PRO',850,true],['HEINE','DELTAone',700],['DermLite','DL4',655],['KaWe','Dermatoscope',188]], images.dermatoscope, 'Meilleur choix'),
+			makeProduct('Échographe portable', 'Imagerie mobile', 'diagnostic', [['GE HealthCare','Vscan Air',1580],['Philips','Lumify',956],['Mindray','M6 / M7',1230,true],['SonoScape','S-series',4125]], images.portableUltrasound, 'Meilleur choix'),
+			makeProduct('Échographe professionnel', 'Imagerie médicale', 'imagerie', [['GE HealthCare','LOGIQ / Voluson',10000],['Philips','Affiniti / EPIQ',7425,true],['Mindray','Resona',13099],['Siemens Healthineers','ACUSON',15559]], images.ultrasound, 'Meilleur choix'),
+			makeProduct('Oxymètres de pouls', 'Surveillance de l’oxygène', 'diagnostic', [['Nonin','Onyx Vantage 9590',125,true],['Masimo','MightySat Rx',50],['Beurer','PO 60',45],['GIMA','OXY-2',50]], images.oximeter, 'Meilleur choix'),
+			makeProduct('Tensiomètre', 'Mesure de la tension', 'diagnostic', [['OMRON','M7 Intelli IT AFib',50,true],['Microlife','BP B6 Connect',60],['Beurer','BM54',30],['A&D Medical','UA-767',80]], images.pressure, 'Meilleur choix'),
+			makeProduct('Thermomètre', 'Mesure de température', 'diagnostic', [['Braun','ThermoScan 7+',40,true],['OMRON','Gentle Temp 720',50],['Microlife','NC 200',27],['Beurer','FT65',50]], images.thermometer, 'Meilleur choix'),
+			makeProduct('Stéthoscope', 'Auscultation', 'diagnostic', [['3M Littmann','Classic III',170,true],['3M Littmann','Cardiology IV',170],['Riester','Duplex 2.0',100],['ERKA','Precise',85]], images.stethoscope, 'Meilleur choix'),
+			makeProduct('Nébuliseur', 'Aérosolthérapie', 'soins', [['OMRON','CompAir C28P',50,true],['OMRON','C801',20],['Microlife','NEB 200',45],['Beurer','IH26',65]], images.nebulizer, 'Meilleur choix'),
+			makeProduct('Glucomètre', 'Mesure de la glycémie', 'diagnostic', [['Roche','Accu-Chek Guide',50,true],['Abbott','FreeStyle Optium Neo',20],['Ascensia','Contour Next One',50],['Beurer','GL44',38]], images.glucose, 'Meilleur choix'),
+			makeProduct('Consommables médicaux', 'Gants, masques et dispositifs', 'soins', [['Hartmann','Gants nitrile · boîte',15,true],['Hartmann','Masques chirurgicaux · boîte',10,true],['BD',' seringues · boîte',20,true],['BD','Aiguilles · boîte',20,true],['Hartmann / Lohmann & Rauscher','Compresses stériles',15],['Hartmann / 3M / BSN','Pansements',20],['B. Braun / Schülke','Désinfectants',30],['BD / Greiner / Sarstedt','Tubes de prélèvement',30],['Roche / Abbott / BD','Lancettes',20],['Roche / Abbott / Ascensia','Bandelettes glucose',30]], images.consumables, 'Hartmann + BD'),
+			makeProduct('Échographie', 'Équipement hospitalier', 'imagerie', [['GE HealthCare','LOGIQ P9',16000,true],['Philips','Affiniti 50',15000],['Siemens','ACUSON Juniper',25000],['Mindray','DC-8',15000]], image, 'Meilleur choix'),
+			makeProduct('Ventilateur / respirateur artificiel', 'Réanimation', 'imagerie', [['Hamilton Medical','HAMILTON-C1',7455,true],['Dräger','Savina 300',7000],['Mindray','SV300',6000],['Getinge','SERVO-i',4000]], images.ventilator, 'Meilleur choix'),
+			makeProduct('Radiologie X-ray', 'Radiologie numérique', 'imagerie', [['Siemens Healthineers','MULTIX Select DR',25590,true],['Philips','MobileDiagnost wDR',20000],['GE HealthCare','AMX Navigate',40000],['AGFA','DX-D',6000]], images.xray, 'Meilleur choix'),
+			makeProduct('Scanner médical', 'CT scanner', 'imagerie', [['GE HealthCare','Revolution / Optima CT660',6000,true],['Siemens Healthineers','SOMATOM Definition',17000],['Philips','Incisive CT',91000],['Canon Medical','Aquilion',123000]], images.ct, 'Meilleur choix'),
+			makeProduct('Autoclaves industriels', 'Stérilisation', 'soins', [['Systec','HX Series',3200,true],['Getinge','GSS67H',7860],['Tuttnauer','5596',3500],['Belimed','MST-H',2989]], images.autoclave, 'Meilleur choix'),
+			makeProduct('IRM', 'Imagerie par résonance magnétique', 'imagerie', [['Siemens Healthineers','MAGNETOM Aera 1.5T',380000,true],['Philips','Ingenia 1.5T',412000],['GE HealthCare','SIGNA Explorer 1.5T',475000],['Canon Medical','Vantage 1.5T/3T',598000]], images.mri, 'Meilleur choix')
+		].map(product => ({ ...product, models:product.models.map(([brand, name, price, selected = false]) => ({ brand, name, price, selected })) }));
+		let cart = [];
+		const grid = document.querySelector('#product-grid');
+		const euro = value => `${value.toLocaleString('fr-FR')} €`;
+		const selectedModel = product => product.models.find(model => model.selected) || product.models[0];
+		const modelLabel = model => `${model.brand} ${model.name}`;
+		function render(list = products) { document.querySelector('#product-count').textContent = `${list.length} produit${list.length > 1 ? 's' : ''}`; grid.innerHTML = list.map(product => { const model = selectedModel(product); return `<article class="product" data-product="${products.indexOf(product)}"><div class="product-visual"><img src="${product.image}" alt="${product.name}" loading="lazy"><span class="tag">${product.tag}</span><button class="wish" aria-label="Ajouter ${product.name} aux favoris">♡</button></div><div class="product-info"><div class="product-type">${product.type}</div><h3>${product.name}</h3><div class="price-line"><span class="price">${euro(model.price)} <small>TTC · ${product.models.length} modèles</small></span><button class="add" data-model="${products.indexOf(product)}" aria-label="Voir les modèles de ${product.name}">→</button></div></div></article>`; }).join(''); }
+		function renderModels(product) { document.querySelector('#model-title').textContent = product.name; document.querySelector('#model-subtitle').textContent = 'Le modèle recommandé est affiché au prix sélectionné. Les autres modèles, dont le prix est barré, seront bientôt disponibles.'; document.querySelector('#model-list').innerHTML = product.models.map((model, index) => `<div class="model-row${model.selected ? ' selected' : ''}"><div><b>${modelLabel(model)}</b><small>${model.selected ? 'Modèle recommandé' : 'Bientôt disponible'}</small></div><span class="model-price">${model.selected ? euro(model.price) : `<del>${euro(model.price)}</del>`}</span>${model.selected ? '<span class="model-badge">Choix expert</span>' : '<span class="model-badge">Bientôt disponible</span>'}<button class="model-add" data-product="${products.indexOf(product)}" data-model="${index}" aria-label="Ajouter ${modelLabel(model)} au panier">+</button></div>`).join(''); document.querySelector('#model-modal').classList.add('open'); }
+		function renderCart() { const items = document.querySelector('#cart-items'); const grouped = cart.reduce((result, item) => { const key = `${item.productIndex}-${item.modelIndex}`; const existing = result.find(entry => entry.key === key); if (existing) existing.quantity += 1; else result.push({ ...item, key, quantity:1 }); return result; }, []); document.querySelector('.count').textContent = cart.length; if (!grouped.length) items.innerHTML = '<div class="empty">Votre panier est encore vide.<br>Ajoutez un équipement pour commencer.</div>'; else items.innerHTML = grouped.map(item => { const product = products[item.productIndex]; const model = product.models[item.modelIndex]; return `<div class="cart-item"><img src="${product.image}" alt=""><div class="cart-item-info"><b>${modelLabel(model)}</b><span class="cart-item-price">${euro(model.price * item.quantity)}</span><div class="quantity"><button data-cart-action="decrease" data-key="${item.key}" aria-label="Diminuer la quantité">−</button><strong>${item.quantity}</strong><button data-cart-action="increase" data-product="${item.productIndex}" data-model="${item.modelIndex}" aria-label="Augmenter la quantité">+</button></div></div></div>`; }).join(''); document.querySelector('#total').textContent = euro(cart.reduce((sum,item) => sum + products[item.productIndex].models[item.modelIndex].price, 0)); }
+		function toggleCart(open) { document.querySelector('#cart').classList.toggle('open',open); document.querySelector('#overlay').classList.toggle('open',open); }
+		function closeModels() { document.querySelector('#model-modal').classList.remove('open'); }
+		function addToCart(productIndex, modelIndex) { cart.push({ productIndex, modelIndex }); renderCart(); closeModels(); toggleCart(true); }
+		render();
+		grid.addEventListener('click', e => { const card = e.target.closest('.product'); if (!card) return; renderModels(products[card.dataset.product]); });
+		document.querySelector('#model-list').addEventListener('click', e => { const add = e.target.closest('.model-add'); if (add) addToCart(Number(add.dataset.product), Number(add.dataset.model)); });
+		document.querySelector('#cart-items').addEventListener('click', e => { const control = e.target.closest('[data-cart-action]'); if (!control) return; if (control.dataset.cartAction === 'increase') cart.push({ productIndex:Number(control.dataset.product), modelIndex:Number(control.dataset.model) }); else { const itemIndex = cart.findIndex(item => `${item.productIndex}-${item.modelIndex}` === control.dataset.key); if (itemIndex !== -1) cart.splice(itemIndex, 1); } renderCart(); });
+		document.querySelectorAll('.category').forEach(btn => btn.addEventListener('click', () => { document.querySelector('.category.active').classList.remove('active'); btn.classList.add('active'); render(btn.dataset.filter === 'all' ? products : products.filter(product => product.category === btn.dataset.filter)); }));
+		document.querySelector('#search').addEventListener('input', e => { const query=e.target.value.toLowerCase(); render(products.filter(product => `${product.name} ${product.type} ${product.models.map(modelLabel).join(' ')}`.toLowerCase().includes(query))); });
+		document.querySelector('#cart-open').onclick = () => toggleCart(true); document.querySelector('#cart-close').onclick = () => toggleCart(false); document.querySelector('#overlay').onclick = () => toggleCart(false); document.querySelector('#model-close').onclick = closeModels; document.querySelector('#model-modal').addEventListener('click', e => { if (e.target.id === 'model-modal') closeModels(); });
+	</script>
+</body>
+</html>
